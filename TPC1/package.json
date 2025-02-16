@@ -1,0 +1,14 @@
+{
+  "name": "tpc1",
+  "version": "1.0.0",
+  "description": "TPC1 de EngWeb2025",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ana Sá Oliveira",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9"
+  }
+}
