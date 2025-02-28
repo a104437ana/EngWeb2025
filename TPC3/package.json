@@ -1,0 +1,14 @@
+{
+  "name": "tpc3",
+  "version": "1.0.0",
+  "description": "TPC3 de EngWeb2025",
+  "main": "alunos_server_skeleton.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ana Sá Oliveira",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.8.0"
+  }
+}
