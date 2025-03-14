@@ -138,7 +138,7 @@ var alunosServer = http.createServer((req, res) => {
                                 axios.post('http://localhost:3000/alunos/',result).then(
                                     resp => {
                                         data = resp.data;
-                                        res.writeHead(200,{'Content-type': 'text/html; charset=utf-8'});
+                                        res.writeHead(201,{'Content-type': 'text/html; charset=utf-8'});
                                         res.write(templates.studentPage(data,d," added"))
                                         res.end()
                                     }
