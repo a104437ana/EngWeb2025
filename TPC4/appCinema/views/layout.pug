@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/w3.css')
+    link(rel='icon', type='image/png', href='/images/icon.png')
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+    meta(charset='utf-8')
+  body
+    .w3-card-4
+      header.w3-container.w3-black.w3-text-red
+        h1
+          span= title
+          if title === "Cinema - Lista de Filmes "
+            a.w3-button.w3-circle.w3-large.w3-white.w3-hover-red.w3-hover-text-black(href="/filmes/adicionar") +
+      block content
+      footer.w3-container.w3-black.w3-text-red
+        adress
+          span Gerado por Ana Sá Oliveira em #{date}&nbsp;
+          if title == "Cinema"
+            a(href='/') Voltar
+          else
+            a(href='/filmes') Voltar

@@ -1,0 +1,28 @@
+extends layout 
+
+block content
+    .w3-container
+        br
+        h1 Nome: 
+            b #{a}
+        br
+        h2 Filmes em que participou:
+        table.w3-table-all
+            tr
+                th Ano
+                th Título
+                th Elenco
+                th Géneros
+            each f in filmes
+                tr.w3-hover-gray(onclick= `window.location.href= '/filmes/' + ${f.id}`)
+                    td= f.year
+                    td= f.title
+                    td
+                        ul.w3-ul 
+                            each a in f.cast
+                                li
+                                    a.w3-hover-text-red(href='/filmes/ator/' + a) #{a}
+                    td
+                        ul.w3-ul 
+                            each g in f.genres 
+                                li= g

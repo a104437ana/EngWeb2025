@@ -1,0 +1,21 @@
+extends layout 
+
+block content
+    .w3-container
+        table.w3-table-all
+            tr
+                th Ano
+                th Título
+                th Elenco
+                th Géneros
+            tr
+                td= f.year
+                td= f.title
+                td
+                    ul.w3-ul 
+                        each a in f.cast
+                            li= a
+                td
+                    ul.w3-ul 
+                        each g in f.genres 
+                            li= g

@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    .w3-container
+        form.w3-container(method="POST")
+            br
+            fieldset
+                legend Filme
+                label Título
+                input.w3-input.w3-round(type="text" name="title" value= f.title required)
+                label Ano
+                input.w3-input.w3-round(type="number" min="1800" max="2100" name="year" value= f.year required)
+                label Elenco (separe atores por vírgulas)
+                input.w3-input.w3-round(type="text" name="cast" value= f.cast required multiple)
+                label Género (separe géneros por vírgulas)
+                input.w3-input.w3-round(type="text" name="genres" value = f.genres required multiple)
+            br
+            button.w3-button.w3-red.w3-text-black.w3-hover-black.w3-hover-text-white(type="submit") Editar
+            br
+            br
