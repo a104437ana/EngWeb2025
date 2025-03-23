@@ -1,0 +1,48 @@
+extends layout 
+
+block content
+    .w3-container
+        p
+        ul.w3-ul.w3-card-4(style="width:50%")
+            li
+                b Número: 
+                = aluno._id
+            li
+                b Nome: 
+                = aluno.nome
+            li
+                b GitLink: 
+                a.w3-hover-text-pink(href=aluno.gitlink) #{aluno.gitlink}
+            li
+                - let count = 0
+                b TPCs feitos: 
+                if ((!aluno.tpc1 || aluno.tpc1 == false) && (!aluno.tpc2 || aluno.tpc2 == false) && (!aluno.tpc3 || aluno.tpc3 == false) && (!aluno.tpc4 || aluno.tpc4 == false) && (!aluno.tpc5 || aluno.tpc5 == false) && (!aluno.tpc6 || aluno.tpc6 == false) && (!aluno.tpc7 || aluno.tpc7 == false) && (!aluno.tpc8 || aluno.tpc8 == false))
+                    | -
+                else 
+                    each i in [1,2,3,4,5,6,7,8]
+                        if aluno['tpc' + i] && aluno['tpc' + i] == true
+                            if count != 0
+                                |, 
+                            | TPC#{i}
+                            - count+=1
+                b &nbsp;(#{count}/8)
+            li
+                b Nota no Teste: 
+                if aluno.teste
+                    = aluno.teste
+                else 
+                    | -
+            li 
+                b Nota no Trabalho: 
+                if aluno.pratico
+                    = aluno.pratico
+                else 
+                    | -
+            if (title === ("Aluno " + aluno._id))
+                li
+                    b Operações: 
+                    p
+                        a.w3-button.w3-medium.w3-cyan.w3-text-black.w3-hover-black.w3-hover-text-white(href='/alunos/editar/' + aluno._id) &nbsp;Editar&nbsp;
+                    p
+                        a.w3-button.w3-medium.w3-cyan.w3-text-black.w3-hover-black.w3-hover-text-white(href='/alunos/apagar/' + aluno._id) Apagar
+        p

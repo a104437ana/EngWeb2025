@@ -1,0 +1,47 @@
+extends layout 
+
+block content
+    .w3-container
+        p
+        table.w3-table-all
+            tr.w3-light-blue.w3-text-black
+                th Número
+                th Nome
+                th GitLink
+                th TPCs feitos
+                th Rácio TPCs
+                th Teste
+                th Trabalho
+                th Operações
+            each aluno in alunos
+                tr.w3-hover-aqua(onclick= `window.location.href= '/alunos/' + '${aluno._id}'`)
+                    td= aluno._id
+                    td= aluno.nome
+                    td
+                        a.w3-hover-text-pink(href=aluno.gitlink) #{aluno.gitlink}
+                    - let count = 0
+                    if ((!aluno.tpc1 || aluno.tpc1 == false) && (!aluno.tpc2 || aluno.tpc2 == false) && (!aluno.tpc3 || aluno.tpc3 == false) && (!aluno.tpc4 || aluno.tpc4 == false) && (!aluno.tpc5 || aluno.tpc5 == false) && (!aluno.tpc6 || aluno.tpc6 == false) && (!aluno.tpc7 || aluno.tpc7 == false) && (!aluno.tpc8 || aluno.tpc8 == false))
+                        td -
+                    else
+                        td
+                            ul.w3-ul
+                                each i in [1,2,3,4,5,6,7,8]
+                                    if aluno['tpc' + i] && aluno['tpc' + i] == true
+                                        li TPC#{i}
+                                        - count += 1
+                    td #{count}/8
+                    if !aluno.teste
+                        td -
+                    else
+                        td= aluno.teste
+                    if !aluno.pratico
+                        td -
+                    else
+                        td= aluno.pratico
+                    td
+                        ul.w3-ul
+                            li
+                                a.w3-button.w3-medium.w3-cyan.w3-text-black.w3-hover-black.w3-hover-text-white(href='/alunos/editar/' + aluno._id) &nbsp;Editar&nbsp;
+                            li
+                                a.w3-button.w3-medium.w3-cyan.w3-text-black.w3-hover-black.w3-hover-text-white(href='/alunos/apagar/' + aluno._id) Apagar
+        p

@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    .w3-container
+        form.w3-container(method="POST")
+            br
+            fieldset
+                legend Aluno
+                label Número
+                input.w3-input.w3-round(type="text" name="_id" readonly value=aluno._id)
+                label Nome
+                input.w3-input.w3-round(type="text" name="nome" value=aluno.nome required)
+                label GitLink
+                input.w3-input.w3-round(type="text" name="gitlink" value=aluno.gitlink required)
+            br
+            fieldset
+                legend TPCs
+                each i in [1,2,3,4,5,6,7,8]
+                    if aluno['tpc' + i] && aluno['tpc' + i] == true
+                        input.w3-check(type="checkbox", name=`tpc${i}`, value=1, checked, style="accent-color:blue;")
+                        label &nbsp;TPC#{i}&nbsp;
+                    else
+                        input.w3-check(type="checkbox", name=`tpc${i}`, value=1, style="accent-color:blue;")
+                        label &nbsp;TPC#{i}&nbsp;
+            br
+            fieldset
+                legend Notas
+                label Teste
+                input.w3-input.w3-round(type="number" min="0" max="20" step="0.01" name="teste" value=aluno.teste)
+                label Trabalho
+                input.w3-input.w3-round(type="number" min="0" max="20" step="0.01" name="pratico" value=aluno.pratico)
+            br
+            button.w3-button.w3-medium.w3-cyan.w3-text-black.w3-hover-black.w3-hover-text-white(type="submit") Editar
+            br
+            br
