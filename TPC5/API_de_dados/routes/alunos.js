@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/:id', function(req, res, next) {
-  Aluno.findById(req.params.id,req.body)
+  Aluno.findById(req.params.id)
   .then(data => res.status(200).jsonp(data))
   .catch(erro => res.status(500).jsonp(erro))
 });
