@@ -1,0 +1,24 @@
+extends layout 
+
+block content
+    .w3-container
+        p
+        table.w3-table-all
+            tr.w3-light-blue.w3-text-black
+                th idcontrato
+                th objectoContrato
+                th dataCelebracaoContrato
+                th precoContratual
+                th NIPC_entidade_comunicante
+                th entidade_comunicante
+            each contrato in contratos
+                tr
+                    td
+                        a.w3-hover-text-pink(href='/' + contrato._id) #{contrato._id}
+                    td= contrato.objectoContrato
+                    td= contrato.dataCelebracaoContrato
+                    td= contrato.precoContratual
+                    td
+                        a.w3-hover-text-pink(href='entidades/' + contrato.NIPC_entidade_comunicante) #{contrato.NIPC_entidade_comunicante}
+                    td= contrato.entidade_comunicante
+        p

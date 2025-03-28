@@ -1,0 +1,37 @@
+extends layout 
+
+block content
+    - let primeiraChave = Object.keys(contratos)[0];
+    - let primeiroValor = contratos[primeiraChave].entidade_comunicante;
+    - let count = 0;
+    .w3-container
+        p
+        ul.w3-ul.w3-card-4(style="width:50%")
+            li
+                b Nome: 
+                = primeiroValor
+        p
+        table.w3-table-all
+            tr.w3-light-blue.w3-text-black
+                th idcontrato
+                th objectoContrato
+                th dataCelebracaoContrato
+                th precoContratual
+                th NIPC_entidade_comunicante
+                th entidade_comunicante
+            each contrato in contratos
+                tr
+                    td
+                        a.w3-hover-text-pink(href='/' + contrato._id) #{contrato._id}
+                    td= contrato.objectoContrato
+                    td= contrato.dataCelebracaoContrato
+                    td= contrato.precoContratual
+                    td= contrato.NIPC_entidade_comunicante
+                    td= contrato.entidade_comunicante
+                    - count += contrato.precoContratual
+        p
+        ul.w3-ul.w3-card-4(style="width:50%")
+            li
+                b Somátório do valor dos contratos: 
+                = count
+        p

@@ -1,0 +1,43 @@
+extends layout 
+
+block content
+    .w3-container
+        p
+        ul.w3-ul.w3-card-4(style="width:50%")
+            li
+                b idcontrato: 
+                = contrato._id
+            li
+                b nAnuncio:
+                if nAnuncio
+                    = contrato.nAnuncio
+                else
+                    |&nbsp;-
+            li
+                b tipoprocedimento: 
+                = contrato.tipoprocedimento
+            li
+                b objectoContrato: 
+                = contrato.objectoContrato
+            li
+                b dataPublicacao: 
+                = contrato.dataPublicacao
+            li
+                b dataCelebracaoContrato: 
+                = contrato.dataCelebracaoContrato
+            li
+                b precoContratual: 
+                = contrato.precoContratual
+            li
+                b prazoExecucao: 
+                = contrato.prazoExecucao
+            li
+                b NIPC_entidade_comunicante: 
+                = contrato.NIPC_entidade_comunicante
+            li
+                b entidade_comunicante: 
+                = contrato.entidade_comunicante
+            li
+                b fundamentacao: 
+                = contrato.fundamentacao
+        p
