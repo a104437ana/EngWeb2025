@@ -1,0 +1,86 @@
+extends layout 
+
+block content
+    .w3-container
+        p
+        ul.w3-ul.w3-card-4
+            li
+                b id: 
+                = livro._id || '-'
+            li
+                b title: 
+                = livro.title || '-'
+            li
+                b series: 
+                = livro.series || '-'
+            li
+                b author: 
+                = livro.author || '-'
+            li
+                b rating: 
+                = livro.rating || '-'
+            li
+                b description: 
+                = livro.description || '-'
+            li
+                b language: 
+                = livro.language || '-'
+            li
+                b isbn: 
+                = livro.isbn || '-'
+            li
+                b genres: 
+                = livro.genres || '-'
+            li
+                b characters: 
+                = livro.characters || '-'
+            li
+                b bookFormat: 
+                = livro.bookFormat || '-'
+            li
+                b edition: 
+                = livro.edition || '-'
+            li
+                b pages: 
+                = livro.pages || '-'
+            li
+                b publisher: 
+                = livro.publisher || '-'
+            li
+                b publishDate: 
+                = livro.publishDate || '-'
+            li
+                b firstPublishDate: 
+                = livro.firstPublishDate || '-'
+            li
+                b awards: 
+                = (livro.awards && livro.awards.length > 0)? livro.awards : '-'
+            li
+                b numRatings: 
+                = livro.numRatings || '-'
+            li
+                b ratingsByStars: 
+                = livro.ratingsByStars || '-'
+            li
+                b likedPercent: 
+                = livro.likedPercent || '-'
+            li
+                b setting: 
+                = livro.setting || '-'
+            li
+                b coverImg:
+                    p
+                    if livro.coverImg
+                        img(src=livro.coverImg, alt="Capa do livro")
+                    else
+                        | -
+            li
+                b bbeScore: 
+                = livro.bbeScore || '-'
+            li
+                b bbeVotes: 
+                = livro.bbeVotes || '-'
+            li
+                b price: 
+                = livro.price || '-'
+        p

@@ -1,0 +1,25 @@
+extends layout 
+
+block content
+    .w3-container
+        p
+        table.w3-table-all
+            tr.w3-light-blue.w3-text-black
+                th id
+                th title
+                th author
+                th publishDate
+                th pages
+            each livro in livros
+                tr
+                    td
+                        a.w3-hover-text-pink(href='/' + livro._id) #{livro._id}
+                    td= livro.title
+                    td
+                        ul.w3-ul
+                            each au in livro.author
+                                li
+                                    a.w3-hover-text-pink(href='/entidades/' + au) #{au}
+                    td= livro.publishDate
+                    td= livro.pages
+        p
