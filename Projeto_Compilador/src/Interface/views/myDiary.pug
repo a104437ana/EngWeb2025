@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    .w3-container.w3-padding-16
+        h1.w3-bar
+            .w3-bar-item.w3-left(style="display: flex; align-items: center; gap: 16px;")
+                img(src="/images/diary.png", style="height:50px;" )
+                span(style="white-space: nowrap;")  O Meu Diário
+                input#w3-search.w3-input.w3-border(type="text", placeholder="🔎 Pesquisar por descrição...", style="width: 300px; font-size: 1rem;")
+            a.w3-bar-item.w3-right.w3-hover-text-blue(href="/registar",, style="text-decoration: none;")
+                img(src="/images/add.png", style="height:50px;" )
+                span  Adicionar Item
+        ul.w3-ul
+            each entry in diary
+                li.w3-content.w3-card-4.w3-white.w3-round.w3-margin-bottom(style="position: relative;")
+                    .w3-container(style="position: absolute; right: 10px; bottom: 10px; display: flex; justify-content: center; align-items: center; gap: 5px;")
+                        form(method="GET", action=`/uploads/edit/${entry._id}`)
+                            button.w3-button.w3-green.w3-round(type="submit") ✏️
+                        form(method="GET", action=`/uploads/delete/${entry._id}`)
+                            button.w3-button.w3-red.w3-round(type="submit") 🗑️
+                    header.w3-container.w3-light-grey.w3-bar
+                        h4.w3-section(style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 2rem;")
+                            .w3-container
+                                if entry.public
+                                    img(src="/images/public.png", style="height:30px;" )
+                                else 
+                                    img(src="/images/private.png", style="height:30px;" )
+                                span  #{entry.formatted_date}
+                            a.w3-button.w3-hover-light-blue(href=`/uploads/download/${entry._id}`, download=entry.description, style="background-color: #ddd;") Download
+                    a(href=`/uploads/${entry._id}`, style="text-decoration: none; color: inherit; display: block; cursor: pointer")
+                        main.w3-container.w3-margin-bottom(style="display: flex; justify-content: center; align-items: center;")
+                            h1=entry.description
+
+    script.
+        document.getElementById('w3-search').addEventListener('input', function () {
+            const filter = this.value.toLowerCase();
+            const entries = document.querySelectorAll('ul.w3-ul > li');
+
+            entries.forEach(entry => {
+                const description = entry.querySelector('h1')?.textContent.toLowerCase() || '';
+                if (description.includes(filter)) {
+                    entry.style.display = '';
+                } else {
+                    entry.style.display = 'none';
+                }
+            });
+        });

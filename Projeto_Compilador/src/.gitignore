@@ -1,0 +1,5 @@
+node_modules/
+fileStore
+logs.txt
+uploads/
+upload/

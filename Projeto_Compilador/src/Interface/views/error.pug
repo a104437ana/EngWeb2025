@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .w3-container.w3-center.w3-padding-64(style="color:#a94442;margin:auto;min-height:70vh;display:flex;flex-direction:column;")
+    i.w3-jumbo.fa.fa-exclamation-triangle
+    h1 Erro #{error.status || 500}
+    h2 #{message || "Ocorreu um erro inesperado."}
+      if error.response && error.response.data.error
+        span : #{error.response.data.error}
+
+    if error && error.stack
+      details.w3-center.w3-margin-top
+        summary(style="cursor:pointer;") Mais Detalhes (clique para expandir)
+        pre.w3-left-align(style="white-space: pre-wrap; word-wrap: break-word; margin-left: 2rem;") #{error.stack}
+
+    .w3-container(style="text-align:center; margin-top:auto; padding-bottom:32px;")
+        a.w3-button.w3-margin-top.w3-round.w3-red(href="/") Voltar à Página Inicial

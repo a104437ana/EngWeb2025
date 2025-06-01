@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .w3-content.w3-padding-32
+        if error
+            .w3-panel.w3-pale-red.w3-border.w3-border-red.w3-round
+                p #{error}
+        form.w3-container.w3-card.w3-white.w3-round(method="POST")
+            h1 Log in
+            br
+            label Username
+            input.w3-input.w3-border.w3-round(type="text" name="username" required)
+            br
+            label Password
+            input.w3-input.w3-border.w3-round(type="password" name="password" required)
+            br
+            button.w3-button.w3-medium.w3-cyan.w3-text-black.w3-hover-cyan.w3-hover-text-black.w3-block(type="submit") Log in
+            hr
+            p.w3-center Don't have an account? 
+                a(href="/signup", style="text-decoration: none;")
+                    b.w3-text-blue Sign up

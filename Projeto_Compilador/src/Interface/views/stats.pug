@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .w3-row
+    .w3-col.m6
+        h1.w3-margin-left Logs de Utilização
+        pre.w3-margin-left(style="max-height: 500px; overflow-y: auto; background-color:rgb(23, 23, 23); padding: 10px; color: white")
+          each line in stats.logs.split('\n')
+            | #{line}
+            br
+    .w3-col.m6
+        h1.w3-margin-left Estatísticas 
+        h3.w3-margin-left Publicações mais vistas:
+        each upload in stats.estatisticas.most_viewed
+            p.w3-margin-left
+                | ID: 
+                a(href=`/uploads/${upload._id}`)= upload._id
+                |  – Visualizações: #{upload.views}
+        h3.w3-margin-left Publicações mais descarregadas:
+        each upload in stats.estatisticas.most_downloaded
+            p.w3-margin-left
+                | ID: 
+                a(href=`/uploads/${upload._id}`)= upload._id
+                |  – Downloads: #{upload.downloads}

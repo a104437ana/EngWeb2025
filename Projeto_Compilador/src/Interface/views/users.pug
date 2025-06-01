@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    .w3-container.w3-padding-16
+        h1.w3-bar
+            .w3-bar-item.w3-left
+                img(src="/images/users.png", style="height:50px;" )
+                span  Utilizadores
+            a.w3-bar-item.w3-right.w3-hover-text-blue(href="/administration/users/register",, style="text-decoration: none;")
+                img(src="/images/add.png", style="height:50px;" )
+                span  Adicionar Utilizador
+        p
+        table.w3-table-all
+            tr.w3-light-blue.w3-text-black
+                th Username
+                th Nível
+                th Ativo
+                th Data Criação
+                th Editar
+                th Remover
+            each user in users
+                tr
+                    td
+                        a(href="/users?user=" + user.username)=user.username
+                    td=user.level == 0 ? "User" : "Admin"
+                    td=user.active ? "Sim" : "Não"
+                    td=user.formatted_dateCreated
+                    td
+                        a(href="/administration/users/edit/" + user.username) Editar
+                    td
+                        a(href="/administration/users/remove/" + user.username) Remover

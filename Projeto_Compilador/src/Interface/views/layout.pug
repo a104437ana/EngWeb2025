@@ -1,0 +1,102 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/w3.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css')
+    link(rel='icon', type='image/png', href='/images/eu_digital.png')
+    meta(charset='utf-8')
+  body.w3-light-grey(style="min-height: 100vh; display: flex; flex-direction: column;")
+    header
+      if role == 1
+        nav.w3-bar.w3-light-blue.w3-center
+          a.w3-bar-item.w3-left.w3-hover-text-white(href="/",, style="text-decoration: none;")
+            img(src="/images/eu_digital.png", style="height:70px;" )
+            span 
+              b O Meu Eu Digital
+          h5
+            form.w3-bar-item.w3-left(method="GET", action="/users")
+              input.w3-bar-item.w3-left.w3-input(type="text", name="user", placeholder="Pesquisar..." autocomplete="off")
+              button.w3-bar-item.w3-left.w3-button.w3-white.w3-hover-white(type="submit") 🔎
+          a.w3-bar-item.w3-left.w3-hover-text-white(href="/administration/users", style="text-decoration: none;")
+            img(src="/images/users.png", style="height:50px;" )
+            span 
+              b Utilizadores
+          a.w3-bar-item.w3-left.w3-hover-text-white(href="/administration/stats", style="text-decoration: none;")
+            img(src="/images/stats.png", style="height:50px;" )
+            span 
+              b Estatísticas
+          a.w3-bar-item.w3-right.w3-hover-text-white(href="/logout", style="text-decoration: none;")
+            img(src="/images/logout.png", style="height:50px;", alt="Sair")
+            span 
+              b Sair
+          a.w3-bar-item.w3-right.w3-hover-text-white(href="/myAccount", style="text-decoration: none;") 
+            img(src="/images/user.png", style="height:50px;", alt="Editar conta")
+            span 
+              b=username
+      else if role == 0
+        nav.w3-bar.w3-light-blue.w3-center
+          a.w3-bar-item.w3-left.w3-hover-text-white(href="/",, style="text-decoration: none;")
+            img(src="/images/eu_digital.png", style="height:70px;" )
+            span 
+              b O Meu Eu Digital
+          h5
+            form.w3-bar-item.w3-left(method="GET", action="/users")
+              input.w3-bar-item.w3-left.w3-input(type="text", name="user", placeholder="Pesquisar..." autocomplete="off")
+              button.w3-bar-item.w3-left.w3-button.w3-white.w3-hover-white(type="submit") 🔎
+          a.w3-bar-item.w3-left.w3-hover-text-white(href="/myDiary",, style="text-decoration: none;")
+            img(src="/images/diary.png", style="height:50px;" )
+            span 
+              b  O Meu Diário
+          a.w3-bar-item.w3-right.w3-hover-text-white(href="/logout", style="text-decoration: none;")
+            img(src="/images/logout.png", style="height:50px;", alt="Sair")
+            span 
+              b Sair
+          a.w3-bar-item.w3-right.w3-hover-text-white(href="/myAccount", style="text-decoration: none;")
+            img(src="/images/user.png", style="height:50px;", alt="Editar conta")
+            span 
+              b=username
+      else
+        nav.w3-bar.w3-light-blue.w3-center
+          a.w3-bar-item.w3-left.w3-hover-text-white(href="/", style="text-decoration: none;")
+            img(src="/images/eu_digital.png", style="height:70px;" )
+            span 
+              b O Meu Eu Digital
+          h5
+            form.w3-bar-item.w3-left(method="GET", action="/users")
+              input.w3-bar-item.w3-left.w3-input(type="text", name="user", placeholder="Pesquisar..." autocomplete="off")
+              button.w3-bar-item.w3-left.w3-button.w3-white.w3-hover-white(type="submit") 🔎
+          a.w3-bar-item.w3-right.w3-hover-text-white(href="/signup", style="text-decoration: none;")
+            img(src="/images/signup.png", style="height:50px;", alt="Registar")
+            span
+              b Registar
+          a.w3-bar-item.w3-right.w3-hover-text-white(href="/login", style="text-decoration: none;")
+            img(src="/images/login.png", style="height:50px;", alt="Log in")
+            span 
+              b Log in
+    main(style="flex-grow: 1;")
+      block content
+    footer.w3-container.w3-light-blue
+      address.w3-bar.w3-center
+        span.w3-bar-item © 
+          a(href="https://epl.di.uminho.pt/~jcr/AULAS/EngWeb2025/") Engenharia Web
+        span.w3-bar-item Desenvolvido pela equipa BUGBUSTERS (
+          a(href="https://github.com/a104437ana") Ana Sá Oliveira
+          span  , 
+          a(href="https://github.com/a104263") Inês Silva Marques
+          span  e 
+          a(href="https://github.com/rafael-vilasboas") José Rafael de Oliveira Vilas Boas
+          span )
+        span.w3-bar-item Interface com  
+          a(href="https://www.w3schools.com/w3css/default.asp") w3.css
+        span.w3-bar-item Autenticação com 
+          a(href="https://www.passportjs.org/") passport
+        span.w3-bar-item Gerado em 
+          span=date
+
+script.
+  window.addEventListener("pageshow", function(event) {
+    if (event.persisted || (window.performance && window.performance.getEntriesByType("navigation")[0].type === "back_forward")) {
+      window.location.reload();
+    }
+  });

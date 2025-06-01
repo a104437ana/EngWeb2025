@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .w3-content.w3-padding-32
+    form.w3-container.w3-card.w3-white.w3-round(method="POST", enctype="multipart/form-data")
+      h1 Adicionar ficheiro
+      br
+      label Ficheiro
+      input.w3-input.w3-border.w3-round(type="file", name="ficheiro", required)
+      br
+      button.w3-button.w3-medium.w3-cyan.w3-text-black.w3-hover-cyan.w3-hover-text-black.w3-block.w3-section(type="submit") Adicionar

@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    .w3-container.w3-padding-16
+        img(src="/images/diary.png", style="height:50px;" )
+        span  O Meu Diário 
+            if upload.public
+                img(src="/images/public.png", style="height:30px;" )
+            else 
+                img(src="/images/private.png", style="height:30px;" )
+            span  #{upload.formatted_date}
+
+            .w3-margin-top(style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;")
+                h1(style="margin: 0;")=upload.description
+                input#w3-tag-search.w3-input.w3-border(type="text", placeholder="🔎 Pesquisar por tags ou título...", style="max-width: 300px;")
+
+    ul.w3-ul
+        each file in upload.files
+            li.w3-content.w3-card-4.w3-white.w3-round.w3-margin-bottom(style="position: relative;")
+                    header.w3-light-grey.w3-section(style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 2rem;")
+                        h2=file.title
+                        a.w3-button.w3-hover-light-blue(href=`/file/${file.id}`, download=file.title, style="background-color: #ddd;") Download
+                    main.w3-container.w3-margin-bottom
+                        if file.type === 'image'
+                            img(src=`/file/${file.id}`, alt=file.title, style="width:900px;height:auto;")
+                        else if file.type === 'pdf'
+                            iframe(src=`/file/${file.id}`, width='900px', height='900px')
+                        else if file.type === 'text'
+                            iframe(src=`/file/${file.id}`, width='900px', height='900px')
+                        div.w3-container.w3-section
+                            each tag in file.tags 
+                                span.w3-tag.w3-round.w3-margin-right(style="display: inline-flex; align-items: center; gap: 6px;")=tag
+
+    script.
+        document.getElementById('w3-tag-search').addEventListener('input', function () {
+            const filterText = this.value.toLowerCase().trim();
+            const filters = filterText.split(/\s+/);
+
+            const files = document.querySelectorAll('ul.w3-ul > li');
+
+            files.forEach(file => {
+                const title = file.querySelector('h2')?.textContent.toLowerCase() || '';
+                const tags = Array.from(file.querySelectorAll('span.w3-tag')).map(tag => tag.textContent.toLowerCase());
+
+                const matchesAll = filters.every(word =>
+                    title.includes(word) || tags.some(tag => tag.includes(word))
+                );
+
+                file.style.display = (matchesAll || filterText === '') ? '' : 'none';
+            });
+        });
